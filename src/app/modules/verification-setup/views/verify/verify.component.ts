@@ -49,7 +49,8 @@ export class VerifyComponent implements OnInit {
           this.verificationMethod = verificationMethod;
           this._cdRef.markForCheck();
         }),
-      ).subscribe();
+      )
+      .subscribe();
   }
 
   public codeChanged(code): void {

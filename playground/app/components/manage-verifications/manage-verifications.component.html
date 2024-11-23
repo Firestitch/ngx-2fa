@@ -1,14 +1,12 @@
 <h2>
-  Two-Step Authentication 
-
+  Two-Step Authentication
   <button
-      mat-raised-button
+      mat-flat-button
       (click)="twoFactorManage.manage()"
       type="button">
     Manage
-  </button>      
+  </button>
 </h2>
-
 <fs-2fa-manage
   #twoFactorManage
   [defaultCountry]="'CA'"
