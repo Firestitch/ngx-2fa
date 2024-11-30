@@ -55,6 +55,9 @@ export class Fs2faVerificationComponent implements OnDestroy, AfterViewInit {
   public trustDays;
 
   @Input()
+  public code;
+
+  @Input()
   public formatRecipient = false;
 
   @Input()
@@ -67,7 +70,7 @@ export class Fs2faVerificationComponent implements OnDestroy, AfterViewInit {
   public verified = new EventEmitter<unknown>();
 
   @Output()
-  public codeChanged = new EventEmitter<unknown>();
+  public codeChange = new EventEmitter<unknown>();
 
   @Output()
   public codeCompleted = new EventEmitter<unknown>();
@@ -75,7 +78,6 @@ export class Fs2faVerificationComponent implements OnDestroy, AfterViewInit {
   @Output()
   public trustDeviceChange = new EventEmitter<boolean>();
 
-  public code = '';
   public VerificationMethodType = VerificationMethodType;
 
   private _destroy$ = new Subject<void>();
@@ -96,9 +98,9 @@ export class Fs2faVerificationComponent implements OnDestroy, AfterViewInit {
     }
   }
 
-  public codeChange(code): void {
+  public codeChanged(code): void {
     this.code = code;
-    this.codeChanged.emit(this.code);
+    this.codeChange.emit(this.code);
   }
 
   public codeComplete(code): void {

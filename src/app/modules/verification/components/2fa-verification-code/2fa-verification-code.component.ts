@@ -44,10 +44,10 @@ export class Fs2faVerificationCodeComponent {
   public code;
 
   @Output()
-  public codeChanged = new EventEmitter<string>();
+  public codeChange = new EventEmitter<string>();
 
   @Output()
-  public codeCompleted = new EventEmitter<void>();
+  public codeComplete = new EventEmitter<void>();
 
   public VerificationMethodType = VerificationMethodType;
 
@@ -55,13 +55,13 @@ export class Fs2faVerificationCodeComponent {
     private _form: FsFormDirective,
   ) {}
 
-  public codeComplete(code): void {
-    this.codeCompleted.emit(code);
+  public codeCompleted(code): void {
+    this.codeComplete.emit(code);
   }
 
-  public codeChange(code): void {
+  public codeChanged(code): void {
     this.code = code;
-    this.codeChanged.emit(this.code);
+    this.codeChange.emit(this.code);
     this._form.dirty();
   }
 

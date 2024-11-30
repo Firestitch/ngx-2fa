@@ -4,8 +4,8 @@
     [type]="verificationMethod.type"
     [code]="code"
     [codeLength]="codeLength"
-    (codeChanged)="codeChange($event)"
-    (codeCompleted)="codeComplete($event)">
+    (codeChange)="codeChanged($event)"
+    (codeComplete)="codeComplete($event)">
   </fs-2fa-verification-code>
 </div>
 <div class="additional">
