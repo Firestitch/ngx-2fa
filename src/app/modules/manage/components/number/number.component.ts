@@ -94,8 +94,4 @@ export class NumberComponent {
     });
   }
 
-  public codeChanged(code): void {
-    this.code = code;
-  }
-
 }

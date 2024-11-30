@@ -53,10 +53,6 @@ export class VerifyComponent implements OnInit {
       .subscribe();
   }
 
-  public codeChanged(code): void {
-    this.code = code;
-  }
-
   public verify = (): Observable<any> => {
     return this._verificationMethodData
       .verify(this.code, this.verification.trustDevice)

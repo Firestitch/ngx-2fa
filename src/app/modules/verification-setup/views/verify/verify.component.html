@@ -14,7 +14,7 @@
         #verification
         [verificationMethod]="verificationMethod"
         [showTrustedDevice]="true"
-        (codeChanged)="codeChanged($event)"
+        [(code)]="code"
         [resend]="resend">
       </fs-2fa-verification>
       <div class="buttons">

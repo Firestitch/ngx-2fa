@@ -1,4 +1,7 @@
-<form fsForm [submit]="submit" [autocomplete]="false">
+<form
+    fsForm
+    [submit]="submit"
+    [autocomplete]="false">
   <fs-dialog>
     <h1 mat-dialog-title>
       Text Message Setup
@@ -7,19 +10,22 @@
       <ng-container *ngIf="verificationMethod; else notVerificationMethod">
         <fs-2fa-verification
           [verificationMethod]="verificationMethod"
-          (codeChanged)="codeChanged($event)"
+          [(code)]="code"
           (codeCompleted)="codeCompleted($event)"
           [resend]="resend"
           [formatRecipient]="true"
           [(trustDevice)]="trustDevice">
         </fs-2fa-verification>
       </ng-container>
-
       <ng-template #notVerificationMethod>
-        <p>The app will only use this number for verifying your account security. Message and data rates may apply by your cell phone provider.</p>
+        <p>
+          The app will only use this number for verifying your account security. Message and data rates may apply by your cell phone provider.
+        </p>
         <mat-form-field>
-          <mat-label>Phone number</mat-label>
-          <input 
+          <mat-label>
+            Phone number
+          </mat-label>
+          <input
             matInput
             fsPhoneField
             [(ngModel)]="phone"
@@ -29,7 +35,7 @@
             autocomplete="off"
             name="phone">
         </mat-form-field>
-        <mat-checkbox 
+        <mat-checkbox
             name="default"
             [(ngModel)]="default"
             [disableRipple]="true">

@@ -91,8 +91,4 @@ export class EmailComponent {
     });
   }
 
-  public codeChanged(code): void {
-    this.code = code;
-  }
-
 }

@@ -1,4 +1,6 @@
-<form fsForm [submit]="submit">
+<form
+    fsForm
+    [submit]="submit">
   <fs-dialog>
     <h1 mat-dialog-title>
       Email Setup
@@ -7,17 +9,20 @@
       <ng-container *ngIf="verificationMethod; else notVerificationMethod">
         <fs-2fa-verification
           [verificationMethod]="verificationMethod"
-          (codeChanged)="codeChanged($event)"
+          [(code)]="code"
           (codeCompleted)="codeCompleted($event)"
           [resend]="resend"
           [(trustDevice)]="trustDevice">
         </fs-2fa-verification>
       </ng-container>
-
       <ng-template #notVerificationMethod>
-        <p>The app will only use this email for verifying your account security. </p>
+        <p>
+          The app will only use this email for verifying your account security.
+        </p>
         <mat-form-field>
-          <mat-label>Email</mat-label>
+          <mat-label>
+            Email
+          </mat-label>
           <input
             matInput
             [required]="true"
@@ -25,7 +30,7 @@
             [fsFormEmail]="true"
             name="email">
         </mat-form-field>
-        <mat-checkbox 
+        <mat-checkbox
             name="default"
             [(ngModel)]="default"
             [disableRipple]="true">
