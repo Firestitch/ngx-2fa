@@ -61,7 +61,7 @@ export class VerifyComponent implements OnInit {
           const redirect = this._route.snapshot.queryParams.redirect || '/';
           this._message.success('Two factor verification successfully setup');
           this._router.navigateByUrl(redirect);
-          this._cookie.delete('Token-Force2fa');
+          this._cookie.delete('Token-Force-2fa');
         }),
       );
   };

@@ -13,7 +13,7 @@ export class ForceVerificationSetupGuard  {
   private _router = inject(Router);
 
   public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree {
-    if (this._cookie.get('Token-Force2fa')) {
+    if (this._cookie.get('Token-Force-2fa')) {
       const redirect = window.location.pathname + window.location.search;
 
       return this._router
