@@ -35,12 +35,14 @@
             autocomplete="off"
             name="phone">
         </mat-form-field>
-        <mat-checkbox
-            name="default"
-            [(ngModel)]="default"
-            [disableRipple]="true">
-          Make this the default verification method
-        </mat-checkbox>
+        <fs-label-field>
+          <mat-checkbox
+              name="default"
+              [(ngModel)]="default"
+              [disableRipple]="true">
+            Make this the default verification method
+          </mat-checkbox>
+        </fs-label-field>
       </ng-template>
     </mat-dialog-content>
     <mat-dialog-actions>
