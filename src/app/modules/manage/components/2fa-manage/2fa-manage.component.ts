@@ -29,7 +29,6 @@ export class Fs2faManageComponent implements OnDestroy, OnInit {
 
   @Input() public accountVerify: () => Observable<any>;
   @Input() public defaultCountry: string;
-  @Input() public buttonStyle: 'raised' | 'stroked' = 'raised';
   @Input() public verificationMethodTypes: VerificationMethodType[];
   @Input() public verificationMethodsFetch: () => Observable<IFsVerificationMethod[]>;
   @Input() public verificationMethodDelete: (verificationMethod: IFsVerificationMethod) => Observable<IFsVerificationMethod>;
@@ -97,7 +96,6 @@ export class Fs2faManageComponent implements OnDestroy, OnInit {
           defaultCountry: this.defaultCountry,
           twoFactorManageService: this._twoFactorManageService,
           verificationMethodTypes: this.verificationMethodTypes,
-          buttonStyle: this.buttonStyle,
         },
       });
 

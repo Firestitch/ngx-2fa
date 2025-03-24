@@ -29,7 +29,6 @@ export class ManageMethodsComponent implements OnInit, OnDestroy {
   public verificationMethods;
   public verificationMethodTypes = {};
   public VerificationMethodType = VerificationMethodType;
-  public buttonStyle: 'raised' | 'stroked' = 'raised';
 
   private _destroy$ = new Subject();
   private _defaultCountry: string;
@@ -44,7 +43,6 @@ export class ManageMethodsComponent implements OnInit, OnDestroy {
   public ngOnInit(): void {
     this._defaultCountry = this._data.defaultCountry;
     this.twoFactorManageService = this._data.twoFactorManageService;
-    this.buttonStyle = this._data.buttonStyle;
     this.verificationMethodTypes = this._data.verificationMethodTypes
       .reduce((verificationMethodTypes, verificationMethodType) => {
         verificationMethodTypes[verificationMethodType] = true;

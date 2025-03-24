@@ -1,15 +1,21 @@
 <fs-dialog>
-  <h1 mat-dialog-title>2-Step Verification</h1>
+  <h1 mat-dialog-title>
+    2-Step Verification
+  </h1>
   <mat-dialog-content>
     <table>
       <tr *ngIf="verificationMethodTypes[VerificationMethodType.Sms]">
         <td>
-          <mat-icon>textsms</mat-icon>
+          <mat-icon>
+            textsms
+          </mat-icon>
         </td>
         <td>
           <div class="type">
-            <span>Text Message</span>
-            @if(textHasVerificationMethod) {
+            <span>
+              Text Message
+            </span>
+            @if (textHasVerificationMethod) {
               <ng-container [ngTemplateOutlet]="enabledChip"></ng-container>
             }
             <app-defaulted *ngIf="defaultSms"></app-defaulted>
@@ -17,31 +23,26 @@
           <div class="small">
             Verification codes are sent by text message
             <ng-container *ngIf="textHasVerificationMethod">
-              to <span class="items">
-                <span *ngFor="let item of twoFactorManageService.smsVerificationMethods">{{item.phoneNumber | fsPhone}}</span>
+              to
+              <span class="items">
+                <span *ngFor="let item of twoFactorManageService.smsVerificationMethods">
+                  {{ item.phoneNumber | fsPhone }}
+                </span>
               </span>
             </ng-container>
           </div>
         </td>
         <td>
-          @if(textHasVerificationMethod) {
-            <button 
-                mat-button 
-                [ngClass]="{ 
-                  'mat-mdc-outlined-button': buttonStyle === 'stroked',
-                  'mat-mdc-raised-button': buttonStyle === 'raised'
-                }"
+          @if (textHasVerificationMethod) {
+            <button
+                mat-stroked-button
                 type="button"
                 (click)="textMessageManage()">
               Manage
             </button>
           } @else {
-            <button               
-                mat-button 
-                [ngClass]="{ 
-                  'mat-mdc-outlined-button': buttonStyle === 'stroked',
-                  'mat-mdc-raised-button': buttonStyle === 'raised'
-                }"
+            <button
+                mat-stroked-button
                 type="button"
                 (click)="textMessageAdd()">
               Turn On
@@ -51,12 +52,16 @@
       </tr>
       <tr *ngIf="verificationMethodTypes[VerificationMethodType.Email]">
         <td>
-          <mat-icon>email</mat-icon>
+          <mat-icon>
+            email
+          </mat-icon>
         </td>
         <td>
           <div class="type">
-            <span>Email</span> 
-            @if(emailHasVerificationMethod) {
+            <span>
+              Email
+            </span>
+            @if (emailHasVerificationMethod) {
               <ng-container [ngTemplateOutlet]="enabledChip"></ng-container>
             }
             <app-defaulted *ngIf="defaultEmail"></app-defaulted>
@@ -64,31 +69,26 @@
           <div class="small">
             Verification codes are sent by email
             <ng-container *ngIf="emailHasVerificationMethod">
-              to <span class="items">
-                <span *ngFor="let item of twoFactorManageService.emailVerificationMethods">{{item.email}}</span>
+              to
+              <span class="items">
+                <span *ngFor="let item of twoFactorManageService.emailVerificationMethods">
+                  {{ item.email }}
+                </span>
               </span>
             </ng-container>
           </div>
         </td>
         <td>
-          @if(emailHasVerificationMethod) {
-            <button 
-                mat-button 
-                [ngClass]="{ 
-                  'mat-mdc-outlined-button': buttonStyle === 'stroked',
-                  'mat-mdc-raised-button': buttonStyle === 'raised'
-                }"
+          @if (emailHasVerificationMethod) {
+            <button
+                mat-stroked-button
                 type="button"
                 (click)="emailMessageManage()">
               Manage
             </button>
           } @else {
             <button
-                mat-button 
-                [ngClass]="{ 
-                  'mat-mdc-outlined-button': buttonStyle === 'stroked',
-                  'mat-mdc-raised-button': buttonStyle === 'raised'
-                }"
+                mat-stroked-button
                 type="button"
                 (click)="emailMessageAdd()">
               Turn On
@@ -98,45 +98,43 @@
       </tr>
       <tr *ngIf="verificationMethodTypes[VerificationMethodType.App]">
         <td>
-          <mat-icon>phone_iphone</mat-icon>
+          <mat-icon>
+            phone_iphone
+          </mat-icon>
         </td>
         <td>
           <div class="type">
-            <span>Authenticator App</span>
-            @if(appHasVerificationMethod) {
+            <span>
+              Authenticator App
+            </span>
+            @if (appHasVerificationMethod) {
               <ng-container [ngTemplateOutlet]="enabledChip"></ng-container>
             }
             <app-defaulted *ngIf="defaultApp"></app-defaulted>
           </div>
-          <div class="small">Verification code is generated by an authenticator app such as Authy or Google Authenticator</div>
+          <div class="small">
+            Verification code is generated by an authenticator app such as Authy or Google Authenticator
+          </div>
         </td>
         <td>
-          @if(appHasVerificationMethod) {
-            <button 
-                mat-button 
-                [ngClass]="{ 
-                  'mat-mdc-outlined-button': buttonStyle === 'stroked',
-                  'mat-mdc-raised-button': buttonStyle === 'raised'
-                }"
+          @if (appHasVerificationMethod) {
+            <button
+                mat-stroked-button
                 type="button"
                 (click)="appRemove()">
               Remove
             </button>
           } @else {
-            <button               
-                mat-button 
-                [ngClass]="{ 
-                  'mat-mdc-outlined-button': buttonStyle === 'stroked',
-                  'mat-mdc-raised-button': buttonStyle === 'raised'
-                }"
+            <button
+                mat-stroked-button
                 type="button"
                 (click)="appAdd()">
               Turn On
             </button>
           }
         </td>
-      </tr> 
-    </table>      
+      </tr>
+    </table>
   </mat-dialog-content>
   <mat-dialog-actions>
     <button
@@ -148,8 +146,10 @@
     </button>
   </mat-dialog-actions>
 </fs-dialog>
-
-
 <ng-template #enabledChip>
-  <fs-chip [backgroundColor]="'#70B601'" [size]="'tiny'">Enabled</fs-chip>
+  <fs-chip
+      [backgroundColor]="'#70B601'"
+      [size]="'tiny'">
+    Enabled
+  </fs-chip>
 </ng-template>
