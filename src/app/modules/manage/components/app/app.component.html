@@ -174,14 +174,12 @@
           Enter the 6-digit code you see in the App.
         </div>
         <app-code-input (codeChanged)="codeChanged($event)"></app-code-input>
-        <div>
-          <mat-checkbox
-              name="default"
-              [(ngModel)]="default"
-              [disableRipple]="true">
-            Make this the default verification method
-          </mat-checkbox>
-        </div>
+        <mat-checkbox
+            name="default"
+            [(ngModel)]="default"
+            [disableRipple]="true">
+          Make this the default verification method
+        </mat-checkbox>
       </div>
     </mat-dialog-content>
     <mat-dialog-actions>
