@@ -96,6 +96,7 @@ export class ManageMethodsComponent implements OnInit, OnDestroy {
         twoFactorManageService: this.twoFactorManageService,
         defaultCountry: this._defaultCountry,
       },
+      minWidth: null,
     });
   }
 
@@ -109,6 +110,7 @@ export class ManageMethodsComponent implements OnInit, OnDestroy {
       data: {
         twoFactorManageService: this.twoFactorManageService,
       },
+      minWidth: null,
     });
   }
 

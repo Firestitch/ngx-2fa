@@ -142,6 +142,7 @@ export class Fs2faVerificationComponent implements OnDestroy, AfterViewInit {
                 verificationMethods,
                 selectVerificationMethod: this.selectVerificationMethod,
               },
+              minWidth: null,
             },
           )
             .afterClosed()

@@ -5,11 +5,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { switchMap, takeUntil, tap } from 'rxjs/operators';
 
-import { AppComponent } from '../components/app';
 import { VerificationMethodType } from '../../../enums/verification-method-type.enum';
+import { IFsVerificationMethod } from '../../../interfaces';
+import { AppComponent } from '../components/app';
 import { EmailComponent } from '../components/email';
 import { NumberComponent } from '../components/number';
-import { IFsVerificationMethod } from '../../../interfaces';
 
 
 @Injectable()
@@ -59,16 +59,16 @@ export class TwoFactorManageService implements OnDestroy {
   
   public getVerificationMethods(type) {
     return this.verificationMethods
-    .filter((verificationMethod) => {
-      return verificationMethod.type === type;
-    });
+      .filter((verificationMethod) => {
+        return verificationMethod.type === type;
+      });
   }
   
   public hasVerificationMethod(type) {
     return this.verificationMethods
-    .some((verificationMethod) => {
-      return verificationMethod.type === type;
-    });
+      .some((verificationMethod) => {
+        return verificationMethod.type === type;
+      });
   }
 
   public registerVerificationMethodDefault(value) {
@@ -163,7 +163,7 @@ export class TwoFactorManageService implements OnDestroy {
       .pipe(
         tap((verificationMethods) => {
           this._verificationMethods$.next(verificationMethods);
-        })
+        }),
       );
   }
 
@@ -184,6 +184,7 @@ export class TwoFactorManageService implements OnDestroy {
             defaultCountry,
             twoFactorManageService: this,
           },
+          minWidth: null,
         })
           .afterClosed(),
         ),
@@ -199,6 +200,7 @@ export class TwoFactorManageService implements OnDestroy {
       .pipe(
         switchMap(() => this._dialog.open(EmailComponent, {
           data: { twoFactorManageService: this },
+          minWidth: null,
         })
           .afterClosed(),
         ),
@@ -214,6 +216,7 @@ export class TwoFactorManageService implements OnDestroy {
       .pipe(
         switchMap(() => this._dialog.open(AppComponent, {
           data: { twoFactorManageService: this  },
+          minWidth: null,
         })
           .afterClosed(),
         ),
