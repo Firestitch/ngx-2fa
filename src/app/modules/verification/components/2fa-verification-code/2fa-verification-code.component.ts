@@ -56,6 +56,8 @@ export class Fs2faVerificationCodeComponent {
   ) {}
 
   public codeCompleted(code): void {
+    this.code = code;
+    this.codeChange.emit(this.code);
     this.codeComplete.emit(code);
   }
 
