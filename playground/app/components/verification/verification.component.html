@@ -1,9 +1,13 @@
 <div class="container">
-  <form fsForm [submit]="verify" [dirtySubmitButton]="false">
-    <h2>2-Step Verification</h2> 
-
+  <form
+      fsForm
+      [submit]="verify"
+      [dirtySubmitButton]="false">
+    <h2>
+      2-step verification
+    </h2>
     <fs-2fa-verification
-      #verification 
+      #verification
       [verificationMethod]="verificationMethod"
       [getVerificationMethods]="getVerificationMethods"
       [selectVerificationMethod]="selectVerificationMethod"
@@ -11,30 +15,28 @@
       [trustDays]="30"
       [resend]="resend">
     </fs-2fa-verification>
-
     <div class="actions">
-      <button 
+      <button
           mat-flat-button
           color="primary"
           type="submit">
         Verify
       </button>
-
-      <button 
+      <button
           [fs2faVerificationResend]="verification"
-          mat-button 
+          mat-button
           type="button">
         Resend Code
       </button>
-
-      <button 
-          mat-button 
-          type="button" 
+      <button
+          mat-button
+          type="button"
           (click)="verification.showVerificationMethods()">
         Try other ways to verify
       </button>
-
-      <button mat-button type="button">
+      <button
+          mat-button
+          type="button">
         Back to signin
       </button>
     </div>
