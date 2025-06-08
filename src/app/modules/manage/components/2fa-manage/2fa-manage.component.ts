@@ -66,9 +66,9 @@ export class Fs2faManageComponent implements OnDestroy, OnInit {
     this._twoFactorManageService.verificationMethods$
       .subscribe((verificationMethods) => {
         const types = {
-          sms: 'Text Message',
+          sms: 'Text message',
           email: 'Email',
-          app: 'Authenticator App',
+          app: 'Authenticator app',
         };
 
         this.statuses = Object.keys(

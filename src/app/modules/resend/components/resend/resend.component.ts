@@ -1,4 +1,5 @@
-import { Component, ChangeDetectionStrategy, Output, EventEmitter, Input, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy } from '@angular/core';
+
 import { Observable, Subject } from 'rxjs';
 import { finalize, takeUntil } from 'rxjs/operators';
 
@@ -9,7 +10,7 @@ import { finalize, takeUntil } from 'rxjs/operators';
   styleUrls: ['./resend.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ResendComponent {
+export class ResendComponent implements OnDestroy {
 
   @Input() public resend: () => Observable<any>;
   

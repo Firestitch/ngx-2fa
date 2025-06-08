@@ -1,6 +1,6 @@
 <fs-dialog>
   <h1 mat-dialog-title>
-    2-Step Verification
+    2-step verification
   </h1>
   <mat-dialog-content>
     <table>
@@ -13,7 +13,7 @@
         <td>
           <div class="type">
             <span>
-              Text Message
+              Text message
             </span>
             @if (textHasVerificationMethod) {
               <ng-container [ngTemplateOutlet]="enabledChip"></ng-container>
@@ -45,7 +45,7 @@
                 mat-stroked-button
                 type="button"
                 (click)="textMessageAdd()">
-              Turn On
+              Turn on
             </button>
           }
         </td>
@@ -91,7 +91,7 @@
                 mat-stroked-button
                 type="button"
                 (click)="emailMessageAdd()">
-              Turn On
+              Turn on
             </button>
           }
         </td>
@@ -105,7 +105,7 @@
         <td>
           <div class="type">
             <span>
-              Authenticator App
+              Authenticator app
             </span>
             @if (appHasVerificationMethod) {
               <ng-container [ngTemplateOutlet]="enabledChip"></ng-container>
@@ -129,7 +129,7 @@
                 mat-stroked-button
                 type="button"
                 (click)="appAdd()">
-              Turn On
+              Turn on
             </button>
           }
         </td>

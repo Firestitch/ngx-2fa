@@ -1,13 +1,13 @@
 <fs-dialog>
   <h1 mat-dialog-title>
-    Text Message Numbers
+    Text message numbers
   </h1>
   <mat-dialog-content>
     <fs-2fa-verification-methods
       [type]="VerificationMethodType.Sms"
       [twoFactorManageService]="twoFactorManageService"
       (deleted)="deleted()">
-    </fs-2fa-verification-methods> 
+    </fs-2fa-verification-methods>
   </mat-dialog-content>
   <mat-dialog-actions>
     <button
@@ -21,7 +21,7 @@
         mat-button
         (click)="add()"
         type="button">
-      Add Number
+      Add number
     </button>
   </mat-dialog-actions>
 </fs-dialog>

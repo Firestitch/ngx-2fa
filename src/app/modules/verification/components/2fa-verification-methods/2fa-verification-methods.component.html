@@ -1,11 +1,17 @@
 <fs-dialog>
   <h1 mat-dialog-title>
-    Verification Methods
+    Verification methods
   </h1>
-  <form fsForm [submit]="setVerificationMethod" [dirtySubmitButton]="false">
+  <form
+      fsForm
+      [submit]="setVerificationMethod"
+      [dirtySubmitButton]="false">
     <mat-dialog-content>
       <ng-container>
-        <fs-radio-group [(ngModel)]="verificationMethod" name="method" [compareWith]="compareWith">
+        <fs-radio-group
+            [(ngModel)]="verificationMethod"
+            name="method"
+            [compareWith]="compareWith">
           <ng-container *ngFor="let methodMap of verificationMethods | keyvalue">
             <div class="method">
               <ng-container [ngSwitch]="methodMap.key">
@@ -17,14 +23,15 @@
                       </mat-icon>
                     </div>
                     <div class="method-name">
-                      <div class="method-title">Text Message</div>
+                      <div class="method-title">
+                        Text message
+                      </div>
                       <div class="method-subtitle">
                         Send verification code to a mobile number
                       </div>
                     </div>
                   </div>
                 </ng-container>
-
                 <ng-container *ngSwitchCase="verificationMethodType.Email">
                   <div class="method-header">
                     <div class="method-icon">
@@ -33,14 +40,15 @@
                       </mat-icon>
                     </div>
                     <div class="method-name">
-                      <div class="method-title">Email</div>
+                      <div class="method-title">
+                        Email
+                      </div>
                       <div class="method-subtitle">
                         Send verification code to an email address
                       </div>
                     </div>
                   </div>
                 </ng-container>
-
                 <ng-container *ngSwitchCase="verificationMethodType.App">
                   <div class="method-header">
                     <div class="method-icon">
@@ -49,16 +57,20 @@
                       </mat-icon>
                     </div>
                     <div class="method-name">
-                      <div class="method-title">Authenticator App</div>
+                      <div class="method-title">
+                        Authenticator app
+                      </div>
                       <div class="method-subtitle">
                         Send verification code to your authenticator app
                       </div>
                     </div>
                   </div>
-                </ng-container>                
+                </ng-container>
               </ng-container>
-
-              <mat-radio-button class="method-item" *ngFor="let method of methodMap.value" [value]="method">
+              <mat-radio-button
+                  class="method-item"
+                  *ngFor="let method of methodMap.value"
+                  [value]="method">
                 <ng-container [ngSwitch]="methodMap.key">
                   <ng-container *ngSwitchCase="verificationMethodType.Sms">
                     {{ method.phoneNumber }}
@@ -68,7 +80,7 @@
                   </ng-container>
                   <ng-container *ngSwitchCase="verificationMethodType.App">
                     Authenticator App
-                  </ng-container>                      
+                  </ng-container>
                 </ng-container>
               </mat-radio-button>
             </div>
@@ -78,8 +90,18 @@
     </mat-dialog-content>
     <mat-dialog-actions>
       <div class="actions">
-        <button mat-button type="submit" color="primary">Next</button>
-        <button mat-button type="button" [mat-dialog-close]="null">Cancel</button>
+        <button
+            mat-button
+            type="submit"
+            color="primary">
+          Next
+        </button>
+        <button
+            mat-button
+            type="button"
+            [mat-dialog-close]="null">
+          Cancel
+        </button>
       </div>
     </mat-dialog-actions>
   </form>
