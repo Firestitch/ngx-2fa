@@ -4,9 +4,9 @@ import {
   ViewChild,
 } from '@angular/core';
 
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose } from '@angular/material/dialog';
 
-import { FsFormDirective } from '@firestitch/form';
+import { FsFormDirective, FsFormModule } from '@firestitch/form';
 import { FsMessage } from '@firestitch/message';
 
 import { Observable, of } from 'rxjs';
@@ -14,12 +14,39 @@ import { switchMap, tap } from 'rxjs/operators';
 
 import { VerificationMethodType } from '../../../../enums/verification-method-type.enum';
 import { TwoFactorManageService } from '../../services';
+import { FormsModule } from '@angular/forms';
+import { FsDialogModule } from '@firestitch/dialog';
+import { CdkScrollable } from '@angular/cdk/scrolling';
+import { Fs2faVerificationComponent } from '../../../verification/components/2fa-verification/2fa-verification.component';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { FsPhoneModule } from '@firestitch/phone';
+import { MatCheckbox } from '@angular/material/checkbox';
+import { MatButton } from '@angular/material/button';
 
 
 @Component({
-  templateUrl: './number.component.html',
-  styleUrls: ['./number.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    templateUrl: './number.component.html',
+    styleUrls: ['./number.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [
+        FormsModule,
+        FsFormModule,
+        FsDialogModule,
+        MatDialogTitle,
+        CdkScrollable,
+        MatDialogContent,
+        Fs2faVerificationComponent,
+        MatFormField,
+        MatLabel,
+        MatInput,
+        FsPhoneModule,
+        MatCheckbox,
+        MatDialogActions,
+        MatButton,
+        MatDialogClose,
+    ],
 })
 export class NumberComponent {
 

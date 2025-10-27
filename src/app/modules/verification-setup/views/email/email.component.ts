@@ -8,12 +8,30 @@ import { FsApi } from '@firestitch/api';
 import { from } from 'rxjs';
 
 import { VerificationSetupService } from '../../services';
+import { FsSkeletonModule } from '@firestitch/skeleton';
+import { FormsModule } from '@angular/forms';
+import { FsFormModule } from '@firestitch/form';
+import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
+import { FsLabelModule } from '@firestitch/label';
+import { MatButton } from '@angular/material/button';
 
 
 @Component({
-  templateUrl: './email.component.html',
-  styleUrls: ['./email.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    templateUrl: './email.component.html',
+    styleUrls: ['./email.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [
+        FsSkeletonModule,
+        FormsModule,
+        FsFormModule,
+        MatCard,
+        MatCardHeader,
+        MatCardTitle,
+        MatCardContent,
+        FsLabelModule,
+        MatButton,
+    ],
 })
 export class EmailComponent implements OnInit {
 

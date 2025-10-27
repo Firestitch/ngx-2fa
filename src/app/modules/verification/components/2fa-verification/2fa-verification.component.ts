@@ -9,7 +9,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { ControlContainer, NgForm } from '@angular/forms';
+import { ControlContainer, NgForm, FormsModule } from '@angular/forms';
 
 
 import { FsDialog } from '@firestitch/dialog';
@@ -22,14 +22,25 @@ import { VerificationMethodType } from '../../../../enums/verification-method-ty
 import { IFsVerificationMethod } from '../../../../interfaces/verification-method.interface';
 import { Fs2faVerificationCodeComponent } from '../2fa-verification-code/2fa-verification-code.component';
 import { Fs2faVerificationMethodsComponent } from '../2fa-verification-methods/2fa-verification-methods.component';
+import { MatCheckbox } from '@angular/material/checkbox';
+import { FsFormModule } from '@firestitch/form';
+import { FsPhoneModule } from '@firestitch/phone';
 
 
 @Component({
-  selector: 'fs-2fa-verification',
-  templateUrl: './2fa-verification.component.html',
-  styleUrls: ['./2fa-verification.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,  
-  viewProviders: [{ provide: ControlContainer, useExisting: NgForm }],
+    selector: 'fs-2fa-verification',
+    templateUrl: './2fa-verification.component.html',
+    styleUrls: ['./2fa-verification.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    viewProviders: [{ provide: ControlContainer, useExisting: NgForm }],
+    standalone: true,
+    imports: [
+        Fs2faVerificationCodeComponent,
+        MatCheckbox,
+        FormsModule,
+        FsFormModule,
+        FsPhoneModule,
+    ],
 })
 export class Fs2faVerificationComponent implements OnDestroy, AfterViewInit {
 

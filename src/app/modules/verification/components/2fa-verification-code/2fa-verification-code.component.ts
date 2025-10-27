@@ -12,19 +12,23 @@ import { FsFormDirective } from '@firestitch/form';
 
 import { VerificationMethodType } from '../../../../enums/verification-method-type.enum';
 import { CodeInputComponent } from '../../../../modules/code-input/components/code-input';
+import { NgTemplateOutlet } from '@angular/common';
+import { CodeInputComponent as CodeInputComponent_1 } from '../../../code-input/components/code-input/code-input.component';
 
 
 @Component({
-  selector: 'fs-2fa-verification-code',
-  templateUrl: './2fa-verification-code.component.html',
-  styleUrls: ['./2fa-verification-code.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  viewProviders: [
-    {
-      provide: ControlContainer,
-      useExisting: NgForm,
-    },
-  ],
+    selector: 'fs-2fa-verification-code',
+    templateUrl: './2fa-verification-code.component.html',
+    styleUrls: ['./2fa-verification-code.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    viewProviders: [
+        {
+            provide: ControlContainer,
+            useExisting: NgForm,
+        },
+    ],
+    standalone: true,
+    imports: [NgTemplateOutlet, CodeInputComponent_1],
 })
 export class Fs2faVerificationCodeComponent {
 

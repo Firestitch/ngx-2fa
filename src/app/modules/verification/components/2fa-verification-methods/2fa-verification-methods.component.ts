@@ -4,19 +4,44 @@ import {
   Inject,
 } from '@angular/core';
 
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose } from '@angular/material/dialog';
 
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { VerificationMethodType } from '../../../../enums/verification-method-type.enum';
 import { IFsVerificationMethod } from '../../../../interfaces/verification-method.interface';
+import { FsDialogModule } from '@firestitch/dialog';
+import { FormsModule } from '@angular/forms';
+import { FsFormModule } from '@firestitch/form';
+import { CdkScrollable } from '@angular/cdk/scrolling';
+import { FsRadioGroupModule } from '@firestitch/radiogroup';
+import { MatIcon } from '@angular/material/icon';
+import { MatRadioButton } from '@angular/material/radio';
+import { MatButton } from '@angular/material/button';
+import { KeyValuePipe } from '@angular/common';
 
 
 @Component({
-  templateUrl: './2fa-verification-methods.component.html',
-  styleUrls: ['./2fa-verification-methods.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    templateUrl: './2fa-verification-methods.component.html',
+    styleUrls: ['./2fa-verification-methods.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [
+        FsDialogModule,
+        MatDialogTitle,
+        FormsModule,
+        FsFormModule,
+        CdkScrollable,
+        MatDialogContent,
+        FsRadioGroupModule,
+        MatIcon,
+        MatRadioButton,
+        MatDialogActions,
+        MatButton,
+        MatDialogClose,
+        KeyValuePipe,
+    ],
 })
 export class Fs2faVerificationMethodsComponent {
 

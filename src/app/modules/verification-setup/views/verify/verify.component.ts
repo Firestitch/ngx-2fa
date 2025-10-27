@@ -19,12 +19,32 @@ import { IFsVerificationMethod } from '../../../../interfaces';
 import { Fs2faVerificationComponent } from '../../../verification/components/2fa-verification';
 import { VerificationMethodData } from '../../data';
 import { VerificationSetupService } from '../../services';
+import { FsSkeletonModule } from '@firestitch/skeleton';
+import { FormsModule } from '@angular/forms';
+import { FsFormModule } from '@firestitch/form';
+import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
+import { Fs2faVerificationComponent as Fs2faVerificationComponent_1 } from '../../../verification/components/2fa-verification/2fa-verification.component';
+import { MatButton } from '@angular/material/button';
+import { Fs2faVerificationResendDirective } from '../../../verification/directives/2fa-verification-resend.directive';
 
 
 @Component({
-  templateUrl: './verify.component.html',
-  styleUrls: ['./verify.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    templateUrl: './verify.component.html',
+    styleUrls: ['./verify.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [
+        FsSkeletonModule,
+        FormsModule,
+        FsFormModule,
+        MatCard,
+        MatCardHeader,
+        MatCardTitle,
+        MatCardContent,
+        Fs2faVerificationComponent_1,
+        MatButton,
+        Fs2faVerificationResendDirective,
+    ],
 })
 export class VerifyComponent implements OnInit {
 

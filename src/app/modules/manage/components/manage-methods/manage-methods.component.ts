@@ -5,7 +5,7 @@ import {
   OnInit,
 } from '@angular/core';
 
-import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose } from '@angular/material/dialog';
 
 import { FsMessage } from '@firestitch/message';
 
@@ -16,12 +16,37 @@ import { VerificationMethodType } from '../../../../enums/verification-method-ty
 import { TwoFactorManageService } from '../../services';
 import { EmailsComponent } from '../emails';
 import { NumbersComponent } from '../numbers';
+import { FsDialogModule } from '@firestitch/dialog';
+import { CdkScrollable } from '@angular/cdk/scrolling';
+import { MatIcon } from '@angular/material/icon';
+import { NgTemplateOutlet } from '@angular/common';
+import { DefaultedComponent } from '../../../defaulted/components/defaulted/defaulted.component';
+import { MatButton } from '@angular/material/button';
+import { FsFormModule } from '@firestitch/form';
+import { FsChipModule } from '@firestitch/chip';
+import { FsPhoneModule } from '@firestitch/phone';
 
 
 @Component({
-  templateUrl: './manage-methods.component.html',
-  styleUrls: ['./manage-methods.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    templateUrl: './manage-methods.component.html',
+    styleUrls: ['./manage-methods.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [
+        FsDialogModule,
+        MatDialogTitle,
+        CdkScrollable,
+        MatDialogContent,
+        MatIcon,
+        NgTemplateOutlet,
+        DefaultedComponent,
+        MatButton,
+        FsFormModule,
+        MatDialogActions,
+        MatDialogClose,
+        FsChipModule,
+        FsPhoneModule,
+    ],
 })
 export class ManageMethodsComponent implements OnInit, OnDestroy {
 

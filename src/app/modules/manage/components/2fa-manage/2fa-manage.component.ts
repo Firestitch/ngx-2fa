@@ -16,14 +16,17 @@ import { VerificationMethodType } from '../../../../enums';
 import { IFsVerificationMethod } from '../../../../interfaces';
 import { TwoFactorManageService } from '../../services';
 import { ManageMethodsComponent } from '../manage-methods';
+import { FsLabelModule } from '@firestitch/label';
 
 
 @Component({
-  selector: 'fs-2fa-manage',
-  templateUrl: './2fa-manage.component.html',
-  styleUrls: ['./2fa-manage.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [TwoFactorManageService],
+    selector: 'fs-2fa-manage',
+    templateUrl: './2fa-manage.component.html',
+    styleUrls: ['./2fa-manage.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [TwoFactorManageService],
+    standalone: true,
+    imports: [FsLabelModule],
 })
 export class Fs2faManageComponent implements OnDestroy, OnInit {
 
