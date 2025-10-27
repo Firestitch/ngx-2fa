@@ -1,4 +1,4 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable, OnDestroy, inject } from '@angular/core';
 
 import { MatDialog } from '@angular/material/dialog';
 
@@ -14,6 +14,8 @@ import { NumberComponent } from '../components/number';
 
 @Injectable()
 export class TwoFactorManageService implements OnDestroy {
+  private _dialog = inject(MatDialog);
+
 
   private _destroy$ = new Subject();
 
@@ -25,10 +27,6 @@ export class TwoFactorManageService implements OnDestroy {
   private _verificationMethodResend: () => Observable<any>;
   private _accountVerify: () => Observable<any[]>;
   private _verificationMethods$ = new BehaviorSubject<any[]>([]);
-
-  constructor(
-    private _dialog: MatDialog,
-  ) {}
 
   public get verificationMethods$() {
     return this._verificationMethods$

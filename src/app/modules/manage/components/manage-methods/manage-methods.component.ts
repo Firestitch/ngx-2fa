@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy, ChangeDetectorRef,
-  Component, Inject,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, inject } from '@angular/core';
 
 import { MAT_DIALOG_DATA, MatDialog, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose } from '@angular/material/dialog';
 
@@ -49,6 +44,11 @@ import { FsPhoneModule } from '@firestitch/phone';
     ],
 })
 export class ManageMethodsComponent implements OnInit, OnDestroy {
+  private _data = inject(MAT_DIALOG_DATA);
+  private _cdRef = inject(ChangeDetectorRef);
+  private _dialog = inject(MatDialog);
+  private _message = inject(FsMessage);
+
 
   public twoFactorManageService: TwoFactorManageService;
   public verificationMethods;
@@ -57,13 +57,6 @@ export class ManageMethodsComponent implements OnInit, OnDestroy {
 
   private _destroy$ = new Subject();
   private _defaultCountry: string;
-
-  constructor(
-    @Inject(MAT_DIALOG_DATA) private _data: any,
-    private _cdRef: ChangeDetectorRef,
-    private _dialog: MatDialog,
-    private _message: FsMessage,
-  ) {}
 
   public ngOnInit(): void {
     this._defaultCountry = this._data.defaultCountry;

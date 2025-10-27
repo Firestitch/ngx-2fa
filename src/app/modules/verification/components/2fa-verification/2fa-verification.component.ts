@@ -1,14 +1,4 @@
-import {
-  AfterViewInit,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, Output, ViewChild, inject } from '@angular/core';
 import { ControlContainer, NgForm, FormsModule } from '@angular/forms';
 
 
@@ -43,6 +33,10 @@ import { FsPhoneModule } from '@firestitch/phone';
     ],
 })
 export class Fs2faVerificationComponent implements OnDestroy, AfterViewInit {
+  private _cdRef = inject(ChangeDetectorRef);
+  private _dialog = inject(FsDialog);
+  private _message = inject(FsMessage);
+
 
   @ViewChild(Fs2faVerificationCodeComponent)
   public verificationCodeComponent: Fs2faVerificationCodeComponent;
@@ -92,12 +86,6 @@ export class Fs2faVerificationComponent implements OnDestroy, AfterViewInit {
   public VerificationMethodType = VerificationMethodType;
 
   private _destroy$ = new Subject<void>();
-
-  constructor(
-    private _cdRef: ChangeDetectorRef,
-    private _dialog: FsDialog,
-    private _message: FsMessage,
-  ) {}
 
   public get recipient(): string {
     if(this.verificationMethod.type === VerificationMethodType.Email) {

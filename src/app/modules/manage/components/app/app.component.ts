@@ -1,8 +1,4 @@
-import {
-  ChangeDetectionStrategy, ChangeDetectorRef,
-  Component, Inject,
-  OnInit, ViewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewChild, inject } from '@angular/core';
 
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose } from '@angular/material/dialog';
 
@@ -46,6 +42,11 @@ import { MatButton } from '@angular/material/button';
     ],
 })
 export class AppComponent implements OnInit {
+  private _data = inject(MAT_DIALOG_DATA);
+  private _dialogRef = inject<MatDialogRef<AppComponent>>(MatDialogRef);
+  private _cdRef = inject(ChangeDetectorRef);
+  private _message = inject(FsMessage);
+
 
   @ViewChild(FsFormDirective)
   public form: FsFormDirective;
@@ -58,13 +59,6 @@ export class AppComponent implements OnInit {
   public code;
   public default;  
   public appType: 'google' | 'authy';
-
-  constructor(
-    @Inject(MAT_DIALOG_DATA) private _data: any,
-    private _dialogRef: MatDialogRef<AppComponent>,
-    private _cdRef: ChangeDetectorRef,
-    private _message: FsMessage,
-  ) {}
 
   public ngOnInit(): void {
     this.twoFactorManageService = this._data.twoFactorManageService;

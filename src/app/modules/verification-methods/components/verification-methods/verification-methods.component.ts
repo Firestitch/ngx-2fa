@@ -1,6 +1,4 @@
-import {
-  Component, ChangeDetectionStrategy, OnInit, Input, ViewChild, Output, EventEmitter,
-} from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, Input, ViewChild, Output, EventEmitter, inject } from '@angular/core';
 
 import { FsListComponent, FsListConfig, FsListModule } from '@firestitch/list';
 import { FsPrompt } from '@firestitch/prompt';
@@ -32,6 +30,8 @@ import { FsPhoneModule } from '@firestitch/phone';
     ],
 })
 export class VerificationMethodsComponent implements OnInit {
+  private _prompt = inject(FsPrompt);
+
 
   @ViewChild(FsListComponent)
   public list: FsListComponent;
@@ -47,10 +47,6 @@ export class VerificationMethodsComponent implements OnInit {
   
   public listConfig: FsListConfig;
   public VerificationMethodType = VerificationMethodType;
-
-  constructor(
-    private _prompt: FsPrompt,
-  ) {}
 
   public ngOnInit(): void {
     if(!this.verificationMethodDefault && this.twoFactorManageService?.hasVerificationMethodDefault) {

@@ -1,11 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  Input,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit, inject } from '@angular/core';
 
 import { MatDialog } from '@angular/material/dialog';
 
@@ -29,6 +22,10 @@ import { FsLabelModule } from '@firestitch/label';
     imports: [FsLabelModule],
 })
 export class Fs2faManageComponent implements OnDestroy, OnInit {
+  private _cdRef = inject(ChangeDetectorRef);
+  private _dialog = inject(MatDialog);
+  private _twoFactorManageService = inject(TwoFactorManageService);
+
 
   @Input() public accountVerify: () => Observable<any>;
   @Input() public defaultCountry: string;
@@ -43,12 +40,6 @@ export class Fs2faManageComponent implements OnDestroy, OnInit {
   public statuses;
 
   private _destroy$ = new Subject();
-
-  constructor(
-    private _cdRef: ChangeDetectorRef,
-    private _dialog: MatDialog,
-    private _twoFactorManageService: TwoFactorManageService,
-  ) {}
 
   public ngOnInit(): void {
     this.verificationMethodTypes = this.verificationMethodTypes || [

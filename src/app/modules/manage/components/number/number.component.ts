@@ -1,8 +1,4 @@
-import {
-  ChangeDetectionStrategy, ChangeDetectorRef,
-  Component, Inject,
-  ViewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ViewChild, inject } from '@angular/core';
 
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose } from '@angular/material/dialog';
 
@@ -49,6 +45,11 @@ import { MatButton } from '@angular/material/button';
     ],
 })
 export class NumberComponent {
+  private _data = inject(MAT_DIALOG_DATA);
+  private _dialogRef = inject<MatDialogRef<NumberComponent>>(MatDialogRef);
+  private _cdRef = inject(ChangeDetectorRef);
+  private _message = inject(FsMessage);
+
 
   @ViewChild(FsFormDirective, { static: false })
   public form: FsFormDirective;
@@ -61,12 +62,9 @@ export class NumberComponent {
   public defaultCountry;
   public twoFactorManageService: TwoFactorManageService;
 
-  constructor(
-    @Inject(MAT_DIALOG_DATA) private _data: any,
-    private _dialogRef: MatDialogRef<NumberComponent>,
-    private _cdRef: ChangeDetectorRef,
-    private _message: FsMessage,
-  ) {
+  constructor() {
+    const _data = this._data;
+
     this.twoFactorManageService = _data.twoFactorManageService;
     this.defaultCountry = _data.defaultCountry;
     this.default = !this.twoFactorManageService.hasVerificationMethods;

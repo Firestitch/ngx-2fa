@@ -1,6 +1,4 @@
-import {
-  Component, Inject, ChangeDetectionStrategy, ViewChild,
-} from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewChild, inject } from '@angular/core';
 
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose } from '@angular/material/dialog';
 import { FsMessage } from '@firestitch/message';
@@ -33,6 +31,10 @@ import { FsFormModule } from '@firestitch/form';
     ],
 })
 export class EmailsComponent {
+  private _data = inject(MAT_DIALOG_DATA);
+  private _dialogRef = inject<MatDialogRef<EmailsComponent>>(MatDialogRef);
+  private _message = inject(FsMessage);
+
 
   @ViewChild(VerificationMethodsComponent) 
   public verificationMethods: VerificationMethodsComponent;
@@ -40,11 +42,9 @@ export class EmailsComponent {
   public twoFactorManageService: TwoFactorManageService;
   public VerificationMethodType = VerificationMethodType;
 
-  constructor(
-    @Inject(MAT_DIALOG_DATA) private _data: any,
-    private _dialogRef: MatDialogRef<EmailsComponent>,
-    private _message: FsMessage,
-  ) {
+  constructor() {
+    const _data = this._data;
+
     this.twoFactorManageService = _data.twoFactorManageService;
   }
 

@@ -1,11 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild, inject } from '@angular/core';
 import { ControlContainer, NgForm } from '@angular/forms';
 
 import { FsFormDirective } from '@firestitch/form';
@@ -31,6 +24,8 @@ import { CodeInputComponent as CodeInputComponent_1 } from '../../../code-input/
     imports: [NgTemplateOutlet, CodeInputComponent_1],
 })
 export class Fs2faVerificationCodeComponent {
+  private _form = inject(FsFormDirective);
+
 
   @ViewChild(CodeInputComponent)
   public codeInputComponent: CodeInputComponent;
@@ -54,10 +49,6 @@ export class Fs2faVerificationCodeComponent {
   public codeComplete = new EventEmitter<void>();
 
   public VerificationMethodType = VerificationMethodType;
-
-  constructor(
-    private _form: FsFormDirective,
-  ) {}
 
   public codeCompleted(code): void {
     this.code = code;
