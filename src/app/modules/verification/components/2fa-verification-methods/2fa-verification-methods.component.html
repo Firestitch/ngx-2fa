@@ -3,19 +3,19 @@
     Verification methods
   </h1>
   <form
-      fsForm
-      [submit]="setVerificationMethod"
-      [dirtySubmitButton]="false">
+    fsForm
+    [submit]="setVerificationMethod"
+    [dirtySubmitButton]="false">
     <mat-dialog-content>
       <ng-container>
         <fs-radio-group
-            [(ngModel)]="verificationMethod"
-            name="method"
-            [compareWith]="compareWith">
-          <ng-container *ngFor="let methodMap of verificationMethods | keyvalue">
+          [(ngModel)]="verificationMethod"
+          name="method"
+          [compareWith]="compareWith">
+          @for (methodMap of verificationMethods | keyvalue; track methodMap) {
             <div class="method">
-              <ng-container [ngSwitch]="methodMap.key">
-                <ng-container *ngSwitchCase="verificationMethodType.Sms">
+              @switch (methodMap.key) {
+                @case (verificationMethodType.Sms) {
                   <div class="method-header">
                     <div class="method-icon">
                       <mat-icon>
@@ -31,8 +31,8 @@
                       </div>
                     </div>
                   </div>
-                </ng-container>
-                <ng-container *ngSwitchCase="verificationMethodType.Email">
+                }
+                @case (verificationMethodType.Email) {
                   <div class="method-header">
                     <div class="method-icon">
                       <mat-icon>
@@ -48,8 +48,8 @@
                       </div>
                     </div>
                   </div>
-                </ng-container>
-                <ng-container *ngSwitchCase="verificationMethodType.App">
+                }
+                @case (verificationMethodType.App) {
                   <div class="method-header">
                     <div class="method-icon">
                       <mat-icon>
@@ -65,41 +65,42 @@
                       </div>
                     </div>
                   </div>
-                </ng-container>
-              </ng-container>
-              <mat-radio-button
+                }
+              }
+              @for (method of methodMap.value; track method) {
+                <mat-radio-button
                   class="method-item"
-                  *ngFor="let method of methodMap.value"
                   [value]="method">
-                <ng-container [ngSwitch]="methodMap.key">
-                  <ng-container *ngSwitchCase="verificationMethodType.Sms">
-                    {{ method.phoneNumber }}
-                  </ng-container>
-                  <ng-container *ngSwitchCase="verificationMethodType.Email">
-                    {{ method.email }}
-                  </ng-container>
-                  <ng-container *ngSwitchCase="verificationMethodType.App">
-                    Authenticator App
-                  </ng-container>
-                </ng-container>
-              </mat-radio-button>
+                  @switch (methodMap.key) {
+                    @case (verificationMethodType.Sms) {
+                      {{ method.phoneNumber }}
+                    }
+                    @case (verificationMethodType.Email) {
+                      {{ method.email }}
+                    }
+                    @case (verificationMethodType.App) {
+                      Authenticator App
+                    }
+                  }
+                </mat-radio-button>
+              }
             </div>
-          </ng-container>
+          }
         </fs-radio-group>
       </ng-container>
     </mat-dialog-content>
     <mat-dialog-actions>
       <div class="actions">
         <button
-            mat-button
-            type="submit"
-            color="primary">
+          mat-button
+          type="submit"
+          color="primary">
           Next
         </button>
         <button
-            mat-button
-            type="button"
-            [mat-dialog-close]="null">
+          mat-button
+          type="button"
+          [mat-dialog-close]="null">
           Cancel
         </button>
       </div>

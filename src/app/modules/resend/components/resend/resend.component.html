@@ -1,6 +1,10 @@
-<ng-container *ngIf="!resendInProgress else sending">
+@if (!resendInProgress) {
   Didn't receive a code? <a (click)="resendClick()">Resend</a>
-</ng-container>
+} @else {
+  <div class="sending">
+    <mat-spinner [diameter]="12"></mat-spinner> Sending
+  </div>
+}
 <ng-template #sending>
   <div class="sending">
     <mat-spinner [diameter]="12"></mat-spinner> Sending
