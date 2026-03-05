@@ -39,7 +39,7 @@ export class Fs2faVerificationMethodsComponent {
   }
 
   public compareWith(o1, o2) {
-    return o1 && o2 && o1.id === o2.id
+    return o1 && o2 && o1.id === o2.id;
   }
 
   public setVerificationMethod = () => {
@@ -47,7 +47,7 @@ export class Fs2faVerificationMethodsComponent {
       .pipe(
         tap((method: IFsVerificationMethod) => {
           this._dialogRef.close(method);
-        })
+        }),
       );
   };
 
