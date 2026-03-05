@@ -7,7 +7,8 @@ import { finalize } from 'rxjs/operators';
 import { Fs2faVerificationComponent } from '../components/2fa-verification/2fa-verification.component';
 
 @Directive({
-  selector: '[fs2faVerificationResend]',
+    selector: '[fs2faVerificationResend]',
+    standalone: true,
 })
 export class Fs2faVerificationResendDirective {  
   

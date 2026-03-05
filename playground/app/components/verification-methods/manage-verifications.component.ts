@@ -3,12 +3,15 @@ import { Component, ViewChild } from '@angular/core';
 import { Fs2faManageComponent, VerificationMethodType } from '@firestitch/2fa';
 
 import { Observable, of } from 'rxjs';
+import { VerificationMethodsComponent as VerificationMethodsComponent_1 } from '../../../../src/app/modules/verification-methods/components/verification-methods/verification-methods.component';
 
 
 @Component({
-  selector: 'app-verification-methods',
-  styleUrls: ['./verification-methods.component.scss'],
-  templateUrl: './verification-methods.component.html',
+    selector: 'app-verification-methods',
+    styleUrls: ['./verification-methods.component.scss'],
+    templateUrl: './verification-methods.component.html',
+    standalone: true,
+    imports: [VerificationMethodsComponent_1],
 })
 export class VerificationMethodsComponent {
 

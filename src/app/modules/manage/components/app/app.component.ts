@@ -1,12 +1,8 @@
-import {
-  ChangeDetectionStrategy, ChangeDetectorRef,
-  Component, Inject,
-  OnInit, ViewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewChild, inject } from '@angular/core';
 
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose } from '@angular/material/dialog';
 
-import { FsFormDirective } from '@firestitch/form';
+import { FsFormDirective, FsFormModule } from '@firestitch/form';
 import { FsMessage } from '@firestitch/message';
 
 import { of } from 'rxjs';
@@ -14,14 +10,43 @@ import { switchMap, tap } from 'rxjs/operators';
 
 import { VerificationMethodType } from '../../../../enums/verification-method-type.enum';
 import { TwoFactorManageService } from '../../services';
+import { FormsModule } from '@angular/forms';
+import { FsDialogModule } from '@firestitch/dialog';
+import { CdkScrollable } from '@angular/cdk/scrolling';
+import { FsSkeletonModule } from '@firestitch/skeleton';
+import { FsQrcodeModule } from '@firestitch/qrcode';
+import { CodeInputComponent } from '../../../code-input/components/code-input/code-input.component';
+import { MatCheckbox } from '@angular/material/checkbox';
+import { MatButton } from '@angular/material/button';
 
 
 @Component({
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [
+        FormsModule,
+        FsFormModule,
+        FsDialogModule,
+        MatDialogTitle,
+        CdkScrollable,
+        MatDialogContent,
+        FsSkeletonModule,
+        FsQrcodeModule,
+        CodeInputComponent,
+        MatCheckbox,
+        MatDialogActions,
+        MatButton,
+        MatDialogClose,
+    ],
 })
 export class AppComponent implements OnInit {
+  private _data = inject(MAT_DIALOG_DATA);
+  private _dialogRef = inject<MatDialogRef<AppComponent>>(MatDialogRef);
+  private _cdRef = inject(ChangeDetectorRef);
+  private _message = inject(FsMessage);
+
 
   @ViewChild(FsFormDirective)
   public form: FsFormDirective;
@@ -34,13 +59,6 @@ export class AppComponent implements OnInit {
   public code;
   public default;  
   public appType: 'google' | 'authy';
-
-  constructor(
-    @Inject(MAT_DIALOG_DATA) private _data: any,
-    private _dialogRef: MatDialogRef<AppComponent>,
-    private _cdRef: ChangeDetectorRef,
-    private _message: FsMessage,
-  ) {}
 
   public ngOnInit(): void {
     this.twoFactorManageService = this._data.twoFactorManageService;

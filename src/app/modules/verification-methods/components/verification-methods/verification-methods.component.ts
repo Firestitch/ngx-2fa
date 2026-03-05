@@ -1,8 +1,6 @@
-import {
-  Component, ChangeDetectionStrategy, OnInit, Input, ViewChild, Output, EventEmitter,
-} from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, Input, ViewChild, Output, EventEmitter, inject } from '@angular/core';
 
-import { FsListComponent, FsListConfig } from '@firestitch/list';
+import { FsListComponent, FsListConfig, FsListModule } from '@firestitch/list';
 import { FsPrompt } from '@firestitch/prompt';
 
 import { map, switchMap } from 'rxjs/operators';
@@ -11,15 +9,29 @@ import { Observable, of } from 'rxjs';
 import { IFsVerificationMethod } from '../../../../interfaces';
 import { VerificationMethodType } from '../../../../enums';
 import { TwoFactorManageService } from '../../../manage/services';
+import { MatIcon } from '@angular/material/icon';
+import { FsCountryModule } from '@firestitch/country';
+import { DefaultedComponent } from '../../../defaulted/components/defaulted/defaulted.component';
+import { FsPhoneModule } from '@firestitch/phone';
 
 
 @Component({
-  selector: 'fs-2fa-verification-methods',
-  templateUrl: './verification-methods.component.html',
-  styleUrls: ['./verification-methods.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'fs-2fa-verification-methods',
+    templateUrl: './verification-methods.component.html',
+    styleUrls: ['./verification-methods.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [
+        FsListModule,
+        MatIcon,
+        FsCountryModule,
+        DefaultedComponent,
+        FsPhoneModule,
+    ],
 })
 export class VerificationMethodsComponent implements OnInit {
+  private _prompt = inject(FsPrompt);
+
 
   @ViewChild(FsListComponent)
   public list: FsListComponent;
@@ -35,10 +47,6 @@ export class VerificationMethodsComponent implements OnInit {
   
   public listConfig: FsListConfig;
   public VerificationMethodType = VerificationMethodType;
-
-  constructor(
-    private _prompt: FsPrompt,
-  ) {}
 
   public ngOnInit(): void {
     if(!this.verificationMethodDefault && this.twoFactorManageService?.hasVerificationMethodDefault) {

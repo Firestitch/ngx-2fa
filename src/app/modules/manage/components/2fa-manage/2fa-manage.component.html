@@ -1,16 +1,14 @@
 <fs-label-field>
   <fs-label>Status</fs-label>
-  <ng-container *ngIf="statuses">
-    <ng-container *ngIf="statuses.length === 1">
+  @if (statuses) {
+    @if (statuses.length === 1) {
       {{statuses[0]}} verification is enabled
-    </ng-container>
-
-    <ng-container *ngIf="statuses.length > 1">
+    }
+    @if (statuses.length > 1) {
       {{statuses.join(', ')}} verifications are enabled
-    </ng-container>
-
-    <ng-container *ngIf="statuses.length  === 0">
+    }
+    @if (statuses.length  === 0) {
       No verification methods are enabled
-    </ng-container>
-  </ng-container>
+    }
+  }
 </fs-label-field>

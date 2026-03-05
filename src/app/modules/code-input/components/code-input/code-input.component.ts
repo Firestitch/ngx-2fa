@@ -1,13 +1,16 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 
-import { FsCodeInputComponent } from '@firestitch/code-input';
+import { FsCodeInputComponent, FsCodeInputModule } from '@firestitch/code-input';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
-  selector: 'app-code-input',
-  templateUrl: './code-input.component.html',
-  styleUrls: ['./code-input.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-code-input',
+    templateUrl: './code-input.component.html',
+    styleUrls: ['./code-input.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [FsCodeInputModule, FormsModule],
 })
 export class CodeInputComponent implements OnInit {
 

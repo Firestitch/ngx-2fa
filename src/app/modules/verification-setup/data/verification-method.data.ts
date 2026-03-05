@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import { FsApi, RequestConfig } from '@firestitch/api';
 
@@ -7,10 +7,8 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class VerificationMethodData<T = any> {
+  private _api = inject(FsApi);
 
-  constructor(
-    private _api: FsApi,
-  ) {}
 
   public verify(code: any, trustDevice: boolean, config: RequestConfig = {}): Observable<T> {
     return this._api.post(

@@ -1,38 +1,40 @@
 <fs-list [config]="listConfig">
   <fs-list-column class="col-icon" width="1%">
     <ng-template fs-list-cell let-row="row">
-      <ng-container *ngIf="row.type === VerificationMethodType.Sms">
+      @if (row.type === VerificationMethodType.Sms) {
         <mat-icon>textsms</mat-icon>
-      </ng-container>
+      }
 
-      <ng-container *ngIf="row.type === VerificationMethodType.Email">
+      @if (row.type === VerificationMethodType.Email) {
         <mat-icon>email</mat-icon>
-      </ng-container>
+      }
 
-      <ng-container *ngIf="row.type === VerificationMethodType.App">
+      @if (row.type === VerificationMethodType.App) {
         <mat-icon>phone_iphone</mat-icon>
-      </ng-container>
+      }
     </ng-template>
   </fs-list-column>
   <fs-list-column class="col-name">
     <ng-template fs-list-cell let-row="row">
       <div class="row">
-        <ng-container *ngIf="row.type === VerificationMethodType.Sms">
+        @if (row.type === VerificationMethodType.Sms) {
           <div class="row">
-            <fs-country [code]="row.phoneCountry" [showName]="false"></fs-country> 
+            <fs-country [code]="row.phoneCountry" [showName]="false"></fs-country>
             <span>{{row.phoneNumber | fsPhone}}</span>
           </div>
-        </ng-container>
+        }
 
-        <ng-container *ngIf="row.type === VerificationMethodType.Email">
+        @if (row.type === VerificationMethodType.Email) {
           {{row.email}}
-        </ng-container>
+        }
 
-        <ng-container *ngIf="row.type === VerificationMethodType.App">
+        @if (row.type === VerificationMethodType.App) {
           App
-        </ng-container>
+        }
 
-        <app-defaulted *ngIf="row.default"></app-defaulted>
+        @if (row.default) {
+          <app-defaulted></app-defaulted>
+        }
       </div>
     </ng-template>
   </fs-list-column>

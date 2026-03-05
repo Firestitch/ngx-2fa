@@ -1,19 +1,33 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, inject } from '@angular/core';
 
 import { Fs2faVerificationComponent, IFsVerificationMethod, VerificationMethodType } from '@firestitch/2fa';
-import { FsFormDirective } from '@firestitch/form';
+import { FsFormDirective, FsFormModule } from '@firestitch/form';
 import { FsMessage } from '@firestitch/message';
 
 import { Observable, of } from 'rxjs';
 import { delay, tap } from 'rxjs/operators';
+import { FormsModule } from '@angular/forms';
+import { Fs2faVerificationComponent as Fs2faVerificationComponent_1 } from '../../../../src/app/modules/verification/components/2fa-verification/2fa-verification.component';
+import { MatButton } from '@angular/material/button';
+import { Fs2faVerificationResendDirective } from '../../../../src/app/modules/verification/directives/2fa-verification-resend.directive';
 
 
 @Component({
-  selector: 'app-verification',
-  styleUrls: ['./verification.component.scss'],
-  templateUrl: './verification.component.html',
+    selector: 'app-verification',
+    styleUrls: ['./verification.component.scss'],
+    templateUrl: './verification.component.html',
+    standalone: true,
+    imports: [
+        FormsModule,
+        FsFormModule,
+        Fs2faVerificationComponent_1,
+        MatButton,
+        Fs2faVerificationResendDirective,
+    ],
 })
 export class VerificationComponent {
+  private _message = inject(FsMessage);
+
 
   @ViewChild(Fs2faVerificationComponent)
   public verificationComponent: Fs2faVerificationComponent;
@@ -65,10 +79,6 @@ export class VerificationComponent {
     phoneNumber: '(416) *** - **47',
     default: true,
   };
-
-  constructor(
-    private _message: FsMessage,
-  ) {}
 
   public codeCompleted(): void {
     this.form.triggerSubmit();

@@ -6,11 +6,20 @@ import {
 import { guid } from '@firestitch/common';
 
 import { Observable, of } from 'rxjs';
+import { MatButton } from '@angular/material/button';
+import { FsFormModule } from '@firestitch/form';
+import { Fs2faManageComponent as Fs2faManageComponent_1 } from '../../../../src/app/modules/manage/components/2fa-manage/2fa-manage.component';
 
 @Component({
-  selector: 'app-manage-verifications',
-  styleUrls: ['./manage-verifications.component.scss'],
-  templateUrl: './manage-verifications.component.html',
+    selector: 'app-manage-verifications',
+    styleUrls: ['./manage-verifications.component.scss'],
+    templateUrl: './manage-verifications.component.html',
+    standalone: true,
+    imports: [
+        MatButton,
+        FsFormModule,
+        Fs2faManageComponent_1,
+    ],
 })
 export class ManageVerificationsComponent {
 

@@ -9,22 +9,24 @@
   </fs-2fa-verification-code>
 </div>
 <div class="additional">
-  <div
+  @if (showTrustedDevice) {
+    <div
       class="trust-device"
-      *ngIf="showTrustedDevice">
-    <mat-checkbox
+      >
+      <mat-checkbox
         name="trust-device"
         [(ngModel)]="trustDevice"
         (ngModelChange)="trustDeviceChange.emit($event)">
-      <div class="small">
-        Bypass 2-step verification
-        <ng-container *ngIf="trustDays">
-          for {{ trustDays }} days
-        </ng-container>
-        <ng-container *ngIf="!trustDays">
-          for future signins
-        </ng-container>
-      </div>
-    </mat-checkbox>
-  </div>
+        <div class="small">
+          Bypass 2-step verification
+          @if (trustDays) {
+            for {{ trustDays }} days
+          }
+          @if (!trustDays) {
+            for future signins
+          }
+        </div>
+      </mat-checkbox>
+    </div>
+  }
 </div>

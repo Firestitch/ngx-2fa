@@ -1,24 +1,48 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Inject,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose } from '@angular/material/dialog';
 
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { VerificationMethodType } from '../../../../enums/verification-method-type.enum';
 import { IFsVerificationMethod } from '../../../../interfaces/verification-method.interface';
+import { FsDialogModule } from '@firestitch/dialog';
+import { FormsModule } from '@angular/forms';
+import { FsFormModule } from '@firestitch/form';
+import { CdkScrollable } from '@angular/cdk/scrolling';
+import { FsRadioGroupModule } from '@firestitch/radiogroup';
+import { MatIcon } from '@angular/material/icon';
+import { MatRadioButton } from '@angular/material/radio';
+import { MatButton } from '@angular/material/button';
+import { KeyValuePipe } from '@angular/common';
 
 
 @Component({
-  templateUrl: './2fa-verification-methods.component.html',
-  styleUrls: ['./2fa-verification-methods.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    templateUrl: './2fa-verification-methods.component.html',
+    styleUrls: ['./2fa-verification-methods.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [
+        FsDialogModule,
+        MatDialogTitle,
+        FormsModule,
+        FsFormModule,
+        CdkScrollable,
+        MatDialogContent,
+        FsRadioGroupModule,
+        MatIcon,
+        MatRadioButton,
+        MatDialogActions,
+        MatButton,
+        MatDialogClose,
+        KeyValuePipe,
+    ],
 })
 export class Fs2faVerificationMethodsComponent {
+  private _dialogData = inject(MAT_DIALOG_DATA);
+  private _dialogRef = inject<MatDialogRef<Fs2faVerificationMethodsComponent>>(MatDialogRef);
+
 
   public verificationMethod: IFsVerificationMethod;
   public phone: string;
@@ -28,11 +52,9 @@ export class Fs2faVerificationMethodsComponent {
 
   private _selectVerificationMethod: (IFsVerificationMethod) => Observable<IFsVerificationMethod>;  
 
-  constructor(
-    @Inject(MAT_DIALOG_DATA)
-    private _dialogData: any,
-    private _dialogRef: MatDialogRef<Fs2faVerificationMethodsComponent>,
-  ) {
+  constructor() {
+    const _dialogData = this._dialogData;
+
     this._selectVerificationMethod = _dialogData.selectVerificationMethod;
     this._setActiveMethod();
     this._initMethods(_dialogData.verificationMethods);
