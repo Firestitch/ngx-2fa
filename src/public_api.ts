@@ -6,6 +6,7 @@ export { Fs2faVerificationMethodsModule } from './app/modules/verification-metho
 
 export { FsVerificationSetupModule } from './app/modules/verification-setup/verification-setup.module';
 export { Fs2faVerificationComponent } from './app/modules/verification/components/2fa-verification/2fa-verification.component';
+export { Fs2faVerificationModule } from './app/modules/verification/verification.module';
 
 
 export { IFsVerificationMethod } from './app/interfaces';
