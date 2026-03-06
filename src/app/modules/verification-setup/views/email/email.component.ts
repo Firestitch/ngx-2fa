@@ -1,37 +1,38 @@
 import {
   ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnInit,
 } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { FsApi } from '@firestitch/api';
+import { MatButton } from '@angular/material/button';
+import { MatCard, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
 
-import { of, tap } from 'rxjs';
+import { FsApi } from '@firestitch/api';
+import { FsFormModule } from '@firestitch/form';
+import { FsLabelModule } from '@firestitch/label';
+import { FsSkeletonModule } from '@firestitch/skeleton';
+
+import { of } from 'rxjs';
 
 import { VerificationSetupService } from '../../services';
-import { FsSkeletonModule } from '@firestitch/skeleton';
-import { FormsModule } from '@angular/forms';
-import { FsFormModule } from '@firestitch/form';
-import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
-import { FsLabelModule } from '@firestitch/label';
-import { MatButton } from '@angular/material/button';
 
 
 @Component({
-    templateUrl: './email.component.html',
-    styleUrls: ['./email.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [
-        FsSkeletonModule,
-        FormsModule,
-        FsFormModule,
-        MatCard,
-        MatCardHeader,
-        MatCardTitle,
-        MatCardContent,
-        FsLabelModule,
-        MatButton,
-    ],
+  templateUrl: './email.component.html',
+  styleUrls: ['./email.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    FsSkeletonModule,
+    FormsModule,
+    FsFormModule,
+    MatCard,
+    MatCardHeader,
+    MatCardTitle,
+    MatCardContent,
+    FsLabelModule,
+    MatButton,
+  ],
 })
 export class EmailComponent implements OnInit {
 
@@ -53,16 +54,13 @@ export class EmailComponent implements OnInit {
   }
 
   public next = () => {
-    return of(true)
-      .pipe(
-        tap(() => {
-          const redirect = this._route.snapshot.queryParams.redirect || '/';
-          this._router.navigate(['verify'], {
-            relativeTo: this._route, 
-            queryParams: { redirect }, 
-          });
-        }),
-      );
+    const redirect = this._route.snapshot.queryParams.redirect || '/';
+    this._router.navigate(['verify'], {
+      relativeTo: this._route, 
+      queryParams: { redirect }, 
+    });
+
+    return of(true);
   };
 
   public cancel() {
