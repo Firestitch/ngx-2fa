@@ -6,45 +6,45 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { MatButton } from '@angular/material/button';
+import { MatCard, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
 
 import { FsCookie } from '@firestitch/cookie';
+import { FsFormModule } from '@firestitch/form';
 import { FsMessage } from '@firestitch/message';
+import { FsSkeletonModule } from '@firestitch/skeleton';
 
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { IFsVerificationMethod } from '../../../../interfaces';
 import { Fs2faVerificationComponent } from '../../../verification/components/2fa-verification';
+import { Fs2faVerificationComponent as Fs2faVerificationComponent_1 } from '../../../verification/components/2fa-verification/2fa-verification.component';
+import { Fs2faVerificationResendDirective } from '../../../verification/directives/2fa-verification-resend.directive';
 import { VerificationMethodData } from '../../data';
 import { VerificationSetupService } from '../../services';
-import { FsSkeletonModule } from '@firestitch/skeleton';
-import { FormsModule } from '@angular/forms';
-import { FsFormModule } from '@firestitch/form';
-import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
-import { Fs2faVerificationComponent as Fs2faVerificationComponent_1 } from '../../../verification/components/2fa-verification/2fa-verification.component';
-import { MatButton } from '@angular/material/button';
-import { Fs2faVerificationResendDirective } from '../../../verification/directives/2fa-verification-resend.directive';
 
 
 @Component({
-    templateUrl: './verify.component.html',
-    styleUrls: ['./verify.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [
-        FsSkeletonModule,
-        FormsModule,
-        FsFormModule,
-        MatCard,
-        MatCardHeader,
-        MatCardTitle,
-        MatCardContent,
-        Fs2faVerificationComponent_1,
-        MatButton,
-        Fs2faVerificationResendDirective,
-    ],
+  templateUrl: './verify.component.html',
+  styleUrls: ['./verify.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    FsSkeletonModule,
+    FormsModule,
+    FsFormModule,
+    MatCard,
+    MatCardHeader,
+    MatCardTitle,
+    MatCardContent,
+    Fs2faVerificationComponent_1,
+    MatButton,
+    Fs2faVerificationResendDirective,
+  ],
 })
 export class VerifyComponent implements OnInit {
 
