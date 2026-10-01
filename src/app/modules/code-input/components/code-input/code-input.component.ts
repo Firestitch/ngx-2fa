@@ -7,7 +7,6 @@ import { FormsModule } from '@angular/forms';
 @Component({
     selector: 'app-code-input',
     templateUrl: './code-input.component.html',
-    styleUrls: ['./code-input.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [FsCodeInputModule, FormsModule],
