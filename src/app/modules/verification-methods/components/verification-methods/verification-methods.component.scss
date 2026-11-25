@@ -3,6 +3,8 @@
     .row {
       display: flex;
       align-items: center;
+      // A long email wraps inside the column instead of running past the list.
+      overflow-wrap: anywhere;
     }
 
     fs-country {

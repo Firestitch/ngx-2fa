@@ -2,6 +2,11 @@ h2 {
   text-align: center;
 }
 
+// A long email wraps inside the card instead of running past its edge.
+fs-label-field {
+  overflow-wrap: anywhere;
+}
+
 .buttons {
   button + button {
     margin-top: 5px;

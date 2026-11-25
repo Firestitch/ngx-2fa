@@ -38,6 +38,9 @@ table {
 }
 
 .items {
+  // A long email wraps inside its cell, so it never widens the table past the buttons.
+  overflow-wrap: anywhere;
+
   span + span {
     &:not(:last-child)::before {
       content: ', ';

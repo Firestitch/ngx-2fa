@@ -23,6 +23,8 @@
 
   .method-item {
     display: block;
+    // A long email wraps inside the dialog instead of running past its edge.
+    overflow-wrap: anywhere;
     margin: 10px 0 0 35px;
   }
 }
